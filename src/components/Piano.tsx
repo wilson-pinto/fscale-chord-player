@@ -152,9 +152,6 @@ const Piano: React.FC = () => {
     const chord = createChord(root, type);
     setActiveChord({ root, type });
 
-    console.log(chord);
-    
-
     if (isArpeggioPlaying) {
       nextChordRef.current = chord;
     } else {
@@ -250,14 +247,20 @@ const Piano: React.FC = () => {
 
         <div className={styles.controlGroup}>
           <label>Transpose: {transpose} semitones</label>
-          <input
-            type="range"
-            min="-12"
-            max="12"
-            value={transpose}
-            onChange={(e) => setTranspose(Number(e.target.value))}
-            className={styles.slider}
-          />
+          <div className={styles.transposeButtons}>
+            <button
+              className={styles.transposeButton}
+              onClick={() => setTranspose(Math.max(-12, transpose - 1))}
+            >
+              -
+            </button>
+            <button
+              className={styles.transposeButton}
+              onClick={() => setTranspose(Math.min(12, transpose + 1))}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
 
