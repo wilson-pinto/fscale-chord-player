@@ -7,7 +7,6 @@ const App: React.FC = () => {
     <>
       <header>
         <h1>F Scale Chord Player</h1>
-        <p>Use keys Q-U to play chords in F major scale</p>
       </header>
       <main>
         <Piano />

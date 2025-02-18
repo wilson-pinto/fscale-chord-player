@@ -36,7 +36,7 @@ const KEYBOARD_MAPPINGS: ChordMappings = {
   'b': { note: 'Bb', type: 'major', label: 'B♭ Major', scale: 'IV' },
   'c': { note: 'C', type: 'major', label: 'C Major', scale: 'V' },
   'd': { note: 'D', type: 'minor', label: 'D Minor', scale: 'vi' },
-  'u': { note: 'E', type: 'diminished', label: 'E Dim', scale: 'vii°' }
+  'e': { note: 'E', type: 'diminished', label: 'E Dim', scale: 'vii°' }
 };
 
 const ARPEGGIO_PATTERNS: ArpeggioPatterns = {
@@ -288,7 +288,7 @@ const Piano: React.FC = () => {
         ) : !piano ? (
           <p>Click any chord to start playing</p>
         ) : (
-          <p>Press keys Q-U to play F scale chords</p>
+          <p>Press the keys to play F scale chords</p>
         )}
       </div>
     </div>
