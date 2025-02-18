@@ -1,5 +1,5 @@
 type ChordType = 'major' | 'minor' | 'diminished';
-type NoteName = 'F' | 'G' | 'A' | 'B♭' | 'C' | 'D' | 'E';
+type NoteName = 'F' | 'G' | 'A' | 'Bb' | 'C' | 'D' | 'E';
 
 interface ChordTypes {
   [key: string]: number[];
@@ -17,18 +17,17 @@ const NOTE_POSITIONS = {
   'F': 0,   // F
   'G': 2,   // G
   'A': 4,   // A
-  'B♭': 5,  // B♭
+  'Bb': 5,  // B♭
   'C': 7,   // C
   'D': 9,   // D
   'E': 11   // E
 };
 
 // Notes in order for the F scale
-const F_SCALE_NOTES = ['F', 'G', 'A', 'B♭', 'C', 'D', 'E'];
+const F_SCALE_NOTES = ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'];
 
 export const createChord = (rootNote: NoteName, type: ChordType = 'major', octave: number = 3): string[] => {
-  console.log(rootNote);
-  
+
   const rootPosition = NOTE_POSITIONS[rootNote];
   
   if (rootPosition === undefined) {

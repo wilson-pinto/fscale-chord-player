@@ -30,12 +30,12 @@ interface BeatPatterns {
 // F major scale chords:
 // F (I) - Gm (ii) - Am (iii) - B♭ (IV) - C (V) - Dm (vi) - E° (vii°)
 const KEYBOARD_MAPPINGS: ChordMappings = {
-  'q': { note: 'F', type: 'major', label: 'F Major', scale: 'I' },
-  'w': { note: 'G', type: 'minor', label: 'G Minor', scale: 'ii' },
-  'e': { note: 'A', type: 'minor', label: 'A Minor', scale: 'iii' },
-  'r': { note: 'B♭', type: 'major', label: 'B♭ Major', scale: 'IV' },
-  't': { note: 'C', type: 'major', label: 'C Major', scale: 'V' },
-  'y': { note: 'D', type: 'minor', label: 'D Minor', scale: 'vi' },
+  'f': { note: 'F', type: 'major', label: 'F Major', scale: 'I' },
+  'g': { note: 'G', type: 'minor', label: 'G Minor', scale: 'ii' },
+  'a': { note: 'A', type: 'minor', label: 'A Minor', scale: 'iii' },
+  'b': { note: 'Bb', type: 'major', label: 'B♭ Major', scale: 'IV' },
+  'c': { note: 'C', type: 'major', label: 'C Major', scale: 'V' },
+  'd': { note: 'D', type: 'minor', label: 'D Minor', scale: 'vi' },
   'u': { note: 'E', type: 'diminished', label: 'E Dim', scale: 'vii°' }
 };
 
@@ -96,14 +96,14 @@ const Piano: React.FC = () => {
     if (!transpose) return note;
     const noteWithoutOctave = note.replace(/\d+$/, '');
     const octave = parseInt(note.match(/\d+$/)?.[0] || '4');
-    const noteIndex = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    const noteIndex = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B']
       .indexOf(noteWithoutOctave.replace('♭', '#'));
     
     let newIndex = noteIndex + transpose;
     let newOctave = octave + Math.floor(newIndex / 12);
     newIndex = ((newIndex % 12) + 12) % 12;
     
-    return ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'][newIndex] + newOctave;
+    return ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'][newIndex] + newOctave;
   }, [transpose]);
 
   const playArpeggio = useCallback((notes: string[], isNewChord = false) => {
@@ -150,9 +150,10 @@ const Piano: React.FC = () => {
     }
 
     const chord = createChord(root, type);
+    setActiveChord({ root, type });
+
     console.log(chord);
     
-    setActiveChord({ root, type });
 
     if (isArpeggioPlaying) {
       nextChordRef.current = chord;
